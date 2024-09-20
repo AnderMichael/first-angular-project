@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+function sumAttempt(a: number, b: number) {
+  return a + b;
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -10,4 +14,5 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'angular-tour-of-heroes';
+  sumAttempt = sumAttempt;
 }
