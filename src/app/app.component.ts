@@ -27,4 +27,13 @@ export class AppComponent {
   private subtract(num1: number, num2: number): number {
     return num1 - num2;
   }
+
+  public getArray() {
+    const persons: number[] = [1, 2, 3, 4, 5]
+    for (let i = 0; i < persons.length; i++) {
+      if (persons[i] % 2 == 0) {
+        console.log('person = ', persons[i]);
+      }
+    }
+  }
 }
