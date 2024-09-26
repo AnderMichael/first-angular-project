@@ -16,7 +16,7 @@ function sumAttempt(a: number, b: number) {
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'angular-tour-of-heroes';
@@ -25,16 +25,41 @@ export class AppComponent {
   person: IPerson = {
     name: 'Ander',
     lastName: 'Cayllan',
-    age: 20
-  }
+    age: 20,
+  };
+
+  students: number[] = [1, 2, 3, 4, 5, 6];
+  parents: number[] = [7, 8, 9, 10];
 
   constructor() {
+    const { name, age } = this.person;
     console.log('subtract', this.subtract(8, 4));
-    console.log('MAP: ', this.animales.map((animal) => (animal + ' - New')));
-    console.log('FOREACH', this.animales.forEach((animal) => (animal + ' + New')));
-    console.log('FIND:', this.animales.find((animal) => animal === 'z'));
-    console.log('FILTER:', this.animales.filter((animal) => animal === 'z'));
+    console.log(
+      'MAP: ',
+      this.animales.map((animal) => animal + ' - New')
+    );
+    console.log(
+      'FOREACH',
+      this.animales.forEach((animal) => animal + ' + New')
+    );
+    console.log(
+      'FIND:',
+      this.animales.find((animal) => animal === 'z')
+    );
+    console.log(
+      'FILTER:',
+      this.animales.filter((animal) => animal === 'z')
+    );
     console.log('IndexOf: ', this.animales.indexOf('c'));
+    console.log('Destructuración: ', name, age);
+    let both = [...this.students, ...this.parents];
+    console.log('Spread Operator', both);
+    console.log('Sum Spread', this.sumSpread(1, 2, 4));
+  }
+
+  public sumSpread(...persons: number[]): number {
+    // return persons[0] + persons[1]; // Es una lista
+    return persons.reduce((sum, currNum) => sum + currNum, 10); // Callback - Acumulador, Valor Inicial
   }
 
   public sum(num1: number, num2: number): number {
@@ -46,12 +71,11 @@ export class AppComponent {
   }
 
   public getArray() {
-    const persons: number[] = [1, 2, 3, 4, 5]
+    const persons: number[] = [1, 2, 3, 4, 5];
     for (let i = 0; i < persons.length; i++) {
       if (persons[i] % 2 == 0) {
         console.log('person = ', persons[i]);
       }
     }
   }
-
 }
