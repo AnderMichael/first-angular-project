@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { UserCardComponent } from './user-card/user-card.component';
 
 interface IPerson {
   name: string;
@@ -14,7 +15,7 @@ function sumAttempt(a: number, b: number) {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, UserCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -30,6 +31,10 @@ export class AppComponent {
 
   students: number[] = [1, 2, 3, 4, 5, 6];
   parents: number[] = [7, 8, 9, 10];
+
+  var1 = 0;
+  var2 = null;
+  var3 = 'hola';
 
   constructor() {
     const { name, age } = this.person;
@@ -55,6 +60,15 @@ export class AppComponent {
     let both = [...this.students, ...this.parents];
     console.log('Spread Operator', both);
     console.log('Sum Spread', this.sumSpread(1, 2, 4));
+
+    // Nullish Coalesing -> Ignorar los null's o undefined's
+    console.log('Nullish Coalesing 0 vs null:', this.var1 ?? this.var2);
+    console.log('Nullish Coalesing null vs hola:', this.var2 ?? this.var3);
+    console.log('Nullish Coalesing null vs null:', null ?? null);
+
+    console.log('OR 0 vs null: ', this.var1 || this.var2);
+    console.log('OR null vs 0: ', this.var2 || this.var1);
+
   }
 
   public sumSpread(...persons: number[]): number {
