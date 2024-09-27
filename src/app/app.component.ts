@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserCardComponent } from './user-card/user-card.component';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { HistoryCalculatorComponent } from './history-calculator/history-calculator.component';
 
 interface IPerson {
   name: string;
@@ -15,13 +17,23 @@ function sumAttempt(a: number, b: number) {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UserCardComponent],
+  imports: [
+    RouterOutlet,
+    UserCardComponent,
+    CalculatorComponent,
+    HistoryCalculatorComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'angular-tour-of-heroes';
   sumAttempt = sumAttempt;
+  result: number = 0;
+
+  history: string[] = [];
+
+
   animales: string[] = ['a', 'b', 'c', 'd', 'e', 'f'];
   person: IPerson = {
     name: 'Ander',
@@ -68,7 +80,6 @@ export class AppComponent {
 
     console.log('OR 0 vs null: ', this.var1 || this.var2);
     console.log('OR null vs 0: ', this.var2 || this.var1);
-
   }
 
   public sumSpread(...persons: number[]): number {
@@ -93,7 +104,24 @@ export class AppComponent {
     }
   }
 
-  public receiveData(data:any){
+  public receiveData(data: any) {
     console.log('Print in father component:', data);
+  }
+
+  public onResult(event: any) {
+    if(!event){
+      this.result = 0;
+    }else{
+      if(event.type === 'SUM'){
+        this.history.push(`SUM: ${event.result}`)
+      }else{
+        this.history.push(`MULT: ${event.result}`)
+      }
+    }
+    this.result = event.result;
+  }
+
+  public addItem(ans: string) {
+    this.history.push(ans);
   }
 }

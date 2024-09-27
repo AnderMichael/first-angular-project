@@ -1,7 +1,22 @@
-<p>This is a sum result: {{sumAttempt(15, 17)}}</p>
-<p>Sum {{sum(3,5) }}</p>
+<p>This is a sum result: {{ sumAttempt(15, 17) }}</p>
+<p>Sum {{ sum(3, 5) }}</p>
 <!-- <p>Subtract {{subtract(9,5)}}</p> -->
-<p>FOR {{getArray()}}</p>
+<p>FOR {{ getArray() }}</p>
 <!-- <app-user-card></app-user-card> -->
-<user-card [name]="'juan'" [email]="'juan@gmail.com'" (sendData)="receiveData($event)"></user-card>
+<user-card
+  [name]="'juan'"
+  [email]="'juan@gmail.com'"
+  (sendData)="receiveData($event)"
+></user-card>
+<div class="calculator-container">
+  <div class="calculator-components-container">
+    <calculator
+      (sum)="onResult($event)"
+      (mult)="onResult($event)"
+      (reset)="onResult($event)"
+    ></calculator>
+    <history-calculator [history]="history"></history-calculator>
+  </div>
+  <p>Result: {{ result }}</p>
+</div>
 <!-- <app-user-card [name]="'juan'" [email]="'juan@gmail.com'"></app-user-card> -->

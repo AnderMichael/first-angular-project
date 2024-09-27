@@ -1,0 +1,27 @@
+.calculator{
+    display: flex;
+    border: 1px black solid;
+    flex-direction: column;
+    align-items: center;
+    .h1{
+        font-size: large;
+        color: black;
+    }
+    padding: 5cqb;
+    background-color: yellow;
+}
+
+.buttons-container{
+    display: flex;
+    flex-direction: row;
+    gap: 0 20px;
+    .sum{
+        background-color: aqua;
+    }
+    .mult{
+        background-color: antiquewhite;
+    }
+    .reset{
+        background-color: blueviolet;
+    }
+}
