@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { HistoryCalculatorComponent } from './history-calculator/history-calculator.component';
+import { CommonModule } from '@angular/common';
 
 interface IPerson {
   name: string;
@@ -22,6 +23,7 @@ function sumAttempt(a: number, b: number) {
     UserCardComponent,
     CalculatorComponent,
     HistoryCalculatorComponent,
+    CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

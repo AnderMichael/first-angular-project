@@ -8,6 +8,7 @@
   [email]="'juan@gmail.com'"
   (sendData)="receiveData($event)"
 ></user-card>
+
 <div class="calculator-container">
   <div class="calculator-components-container">
     <calculator
@@ -19,4 +20,10 @@
   </div>
   <p>Result: {{ result }}</p>
 </div>
+
+<p *ngIf="1 == 1">Variables are equal</p>
+
+@if(1 == 1) {
+  <p>The sentence is true</p>
+}
 <!-- <app-user-card [name]="'juan'" [email]="'juan@gmail.com'"></app-user-card> -->
