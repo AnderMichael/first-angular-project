@@ -21,9 +21,56 @@
   <p>Result: {{ result }}</p>
 </div>
 
-<p *ngIf="1 == 1">Variables are equal</p>
+<!-- Sintaxis antigua -->
 
-@if(1 == 1) {
-  <p>The sentence is true</p>
+<!-- <p *ngIf="var1 == var2; else">Variables are equal</p>
+<ng-template #elseold>
+  <p>old, result is false</p>
+</ng-template>
+
+<p #elseold="old">old, result is false</p>
+
+@if(var1 == var2) {
+<p>The sentence is true</p>
+} @else {
+<p>The sentence is false</p>
 }
-<!-- <app-user-card [name]="'juan'" [email]="'juan@gmail.com'"></app-user-card> -->
+
+<p *ngFor="let item of ['a', 'b', 'c', 'd']; let i = index">
+  old for, value {{ item }}, index: {{ index }}
+</p> -->
+
+<!-- Corrected ngIf with else -->
+<p *ngIf="var1 == var2; else elseTemplate">Variables are equal</p>
+<ng-template #elseTemplate>
+  <p>Old, result is false</p>
+</ng-template>
+
+<!-- The below is redundant; it's already covered by the template reference in the previous section -->
+<!-- <p #elseold="old">Old, result is false</p> -->
+
+<!-- Use ngIf instead of @if -->
+<p *ngIf="var1 == var2; else anotherElseTemplate">The sentence is true</p>
+<ng-template #anotherElseTemplate>
+  <p>The sentence is false</p>
+</ng-template>
+
+<!-- Corrected ngFor loop -->
+<p *ngFor="let item of ['a', 'b', 'c', 'd']; let i = index">
+  Old for, value {{ item }}, index: {{ i }}
+</p>
+
+@for(item of ['a', 'b', 'c'. 'd']; track item){
+  
+}
+<div [ngSwitch]="var1">
+  <p *ngSwitchCase="0">var is 0</p>
+  <p *ngSwitchCase="1">var is 1</p>
+  <p *ngSwitchDefault>Default Value</p>
+</div>
+
+@switch(var1){
+  @case(0) {<p>new syntax, var is 0</p>}
+  @case(1) {<p>new syntax, var is 0</p>}
+  @default {<p>new syntax, default</p>}
+}
