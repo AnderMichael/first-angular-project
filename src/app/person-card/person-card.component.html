@@ -1,0 +1,17 @@
+<div class="card-container">
+  <div>
+    <p class="title-camp">
+      Name: <span class="value-camp">{{ person.name }}</span>
+    </p>
+    <p class="title-camp">
+      Gender: <span class="value-camp">{{ person.gender }}</span>
+    </p>
+    <p class="title-camp">
+      Age: <span class="value-camp">{{ person.age }}</span>
+    </p>
+  </div>
+  @if(person.age >= 18){
+  <div class="discount-pin">Discount</div>
+  }
+</div>
+ 

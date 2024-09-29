@@ -1,0 +1,25 @@
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px black solid;
+  border-radius: 2cap;
+  width: auto;
+  padding: 25px;
+  margin-bottom: 20px;
+  background-color: burlywood;
+  .title-camp {
+    font-weight: bold;
+  }
+  .value-camp {
+    font-weight: 100;
+  }
+  .discount-pin {
+    background-color: orange;
+    width: fit-content;
+    height: fit-content;
+    padding: 1.5ch;
+    border-radius: 1rem;
+    font-weight: bold;
+  }
+}

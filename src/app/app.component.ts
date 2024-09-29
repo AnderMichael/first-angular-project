@@ -4,7 +4,8 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { HistoryCalculatorComponent } from './history-calculator/history-calculator.component';
 import { CommonModule } from '@angular/common';
-
+import persons from '../constants/persons';
+import { PersonCardComponent } from './person-card/person-card.component';
 interface IPerson {
   name: string;
   lastName: string;
@@ -23,7 +24,8 @@ function sumAttempt(a: number, b: number) {
     UserCardComponent,
     CalculatorComponent,
     HistoryCalculatorComponent,
-    CommonModule
+    PersonCardComponent,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -32,9 +34,9 @@ export class AppComponent {
   title = 'angular-tour-of-heroes';
   sumAttempt = sumAttempt;
   result: number = 0;
+  persons = persons;
 
   history: string[] = [];
-
 
   animales: string[] = ['a', 'b', 'c', 'd', 'e', 'f'];
   person: IPerson = {
@@ -111,13 +113,13 @@ export class AppComponent {
   }
 
   public onResult(event: any) {
-    if(!event){
+    if (!event) {
       this.result = 0;
-    }else{
-      if(event.type === 'SUM'){
-        this.history.push(`SUM: ${event.result}`)
-      }else{
-        this.history.push(`MULT: ${event.result}`)
+    } else {
+      if (event.type === 'SUM') {
+        this.history.push(`SUM: ${event.result}`);
+      } else {
+        this.history.push(`MULT: ${event.result}`);
       }
     }
     this.result = event.result;
@@ -125,5 +127,30 @@ export class AppComponent {
 
   public addItem(ans: string) {
     this.history.push(ans);
+  }
+
+  public cleanDiscountPersons() {
+    const personsWithoutDiscount = this.personsWithoutDiscount();
+    this.persons = personsWithoutDiscount;
+  }
+
+  public malePersons(){
+    const male = this.persons.filter((person) => person.gender === 'male');
+    return male;
+  }
+
+  public femalePersons(){
+    const female = this.persons.filter((person) => person.gender === 'female');
+    return female;
+  }
+
+  public personsWithoutDiscount() {
+    const personsWithoutDiscount = this.persons.filter((person) => person.age < 18);
+    return personsWithoutDiscount;
+  }
+
+  public personsWithDiscount() {
+    const personsWithDiscount = this.persons.filter((person) => person.age >= 18);
+    return personsWithDiscount;
   }
 }

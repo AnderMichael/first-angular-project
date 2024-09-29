@@ -60,8 +60,8 @@
   Old for, value {{ item }}, index: {{ i }}
 </p>
 
-@for(item of ['a', 'b', 'c'. 'd']; track item){
-  
+@for(item of ['a','b','c','d']; track item){
+<p>New Syntax Student: {{ item }}</p>
 }
 <div [ngSwitch]="var1">
   <p *ngSwitchCase="0">var is 0</p>
@@ -69,8 +69,61 @@
   <p *ngSwitchDefault>Default Value</p>
 </div>
 
-@switch(var1){
-  @case(0) {<p>new syntax, var is 0</p>}
-  @case(1) {<p>new syntax, var is 0</p>}
-  @default {<p>new syntax, default</p>}
-}
+@switch(var1){ @case(0) {
+<p>new syntax, var is 0</p>
+} @case(1) {
+<p>new syntax, var is 0</p>
+} @default {
+<p>new syntax, default</p>
+} }
+
+<h1>Exercise Persons Cards</h1>
+<p>
+  Persons : [ 
+  @for(person of persons; track person){
+    <span>{{person.name}}, </span>
+  }
+  ]
+</p>
+<div class="person-cards-container">
+  <div class="cards-container">
+    <h2>Person Cards</h2>
+    @for(person of persons; track person){
+    <person-card [person]="person"></person-card>
+    }
+  </div>
+  <div class="details-container">
+    <h1>Persons Details</h1>
+    <div class="details-card">
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Total persons male</td>
+            <td>{{ malePersons().length }} persons</td>
+          </tr>
+          <tr>
+            <td>Total persons female</td>
+            <td>{{ femalePersons().length }} persons</td>
+          </tr>
+          <tr>
+            <td>Persons with discount</td>
+            <td>{{ personsWithDiscount().length }} persons</td>
+          </tr>
+          <tr>
+            <td>Total Persons</td>
+            <td>{{ persons.length }} persons</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="clean-button" (click)="cleanDiscountPersons()">
+        Clean persons with discount
+      </button>
+    </div>
+  </div>
+</div>
