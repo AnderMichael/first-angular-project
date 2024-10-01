@@ -3,10 +3,15 @@
 <!-- <p>Subtract {{subtract(9,5)}}</p> -->
 <p>FOR {{ getArray() }}</p>
 <!-- <app-user-card></app-user-card> -->
+
+<button (click)="currentPerson = person">Change to Person ONE</button>
+
+<button (click)="currentPerson = persontwo">Change to Person TWO</button>
+
 @if(destroyUserCard){
 <user-card
-  [name]="'juan'"
-  [email]="'juan@gmail.com'"
+  [name]="currentPerson.name"
+  [email]="currentPerson.email"
   (sendData)="receiveData($event)"
 ></user-card>
 }@else{ 

@@ -10,6 +10,7 @@ interface IPerson {
   name: string;
   lastName: string;
   age: number;
+  email: string;
 }
 
 function sumAttempt(a: number, b: number) {
@@ -41,9 +42,17 @@ export class AppComponent {
 
   animales: string[] = ['a', 'b', 'c', 'd', 'e', 'f'];
   person: IPerson = {
-    name: 'Ander',
+    name: 'Ander1',
+    lastName: 'Cayllan',
+    email: 'ander1@gmail.com',
+    age: 20,
+  };
+
+  persontwo: IPerson = {
+    name: 'Ander2',
     lastName: 'Cayllan',
     age: 20,
+    email: 'ander2@gmail.com'
   };
 
   students: number[] = [1, 2, 3, 4, 5, 6];
@@ -52,6 +61,8 @@ export class AppComponent {
   var1 = 0;
   var2 = null;
   var3 = 'hola';
+
+  currentPerson: any = this.person;
 
   constructor() {
     const { name, age } = this.person;
@@ -87,7 +98,7 @@ export class AppComponent {
     // console.log('OR null vs 0: ', this.var2 || this.var1);
   }
 
-  public changeDestroy(){
+  public changeDestroy() {
     this.destroyUserCard = !this.destroyUserCard;
   }
   public sumSpread(...persons: number[]): number {
@@ -138,23 +149,35 @@ export class AppComponent {
     this.persons = personsWithoutDiscount;
   }
 
-  public malePersons(){
+  public malePersons() {
     const male = this.persons.filter((person) => person.gender === 'male');
     return male;
   }
 
-  public femalePersons(){
+  public femalePersons() {
     const female = this.persons.filter((person) => person.gender === 'female');
     return female;
   }
 
   public personsWithoutDiscount() {
-    const personsWithoutDiscount = this.persons.filter((person) => person.age < 18);
+    const personsWithoutDiscount = this.persons.filter(
+      (person) => person.age < 18
+    );
     return personsWithoutDiscount;
   }
 
   public personsWithDiscount() {
-    const personsWithDiscount = this.persons.filter((person) => person.age >= 18);
+    const personsWithDiscount = this.persons.filter(
+      (person) => person.age >= 18
+    );
     return personsWithDiscount;
+  }
+
+  public changeToPerson1() {
+    this.currentPerson = this.person;
+  }
+
+  public changeToPerson2() {
+    this.currentPerson = this.persontwo;
   }
 }
