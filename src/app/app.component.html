@@ -3,13 +3,18 @@
 <!-- <p>Subtract {{subtract(9,5)}}</p> -->
 <p>FOR {{ getArray() }}</p>
 <!-- <app-user-card></app-user-card> -->
+@if(destroyUserCard){
 <user-card
   [name]="'juan'"
   [email]="'juan@gmail.com'"
   (sendData)="receiveData($event)"
 ></user-card>
+}@else{ 
+  <p>Destroying CARD!</p>
+}
+<button (click)="changeDestroy()">Destroy</button>
 
-<div class="calculator-container">
+<!-- <div class="calculator-container">
   <div class="calculator-components-container">
     <calculator
       (sum)="onResult($event)"
@@ -19,7 +24,7 @@
     <history-calculator [history]="history"></history-calculator>
   </div>
   <p>Result: {{ result }}</p>
-</div>
+</div> -->
 
 <!-- Sintaxis antigua -->
 
@@ -79,13 +84,11 @@
 
 <h1>Exercise Persons Cards</h1>
 <p>
-  Persons : [ 
-  @for(person of persons; track person){
-    <span>{{person.name}}, </span>
-  }
-  ]
+  Persons : [ @for(person of persons; track person){
+  <span>{{ person.name }}, </span>
+  } ]
 </p>
-<div class="person-cards-container">
+<!-- <div class="person-cards-container">
   <div class="cards-container">
     <h2>Person Cards</h2>
     @for(person of persons; track person){
@@ -126,4 +129,4 @@
       </button>
     </div>
   </div>
-</div>
+</div> -->

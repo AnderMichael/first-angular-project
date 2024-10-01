@@ -32,6 +32,7 @@ function sumAttempt(a: number, b: number) {
 })
 export class AppComponent {
   title = 'angular-tour-of-heroes';
+  destroyUserCard: boolean = true;
   sumAttempt = sumAttempt;
   result: number = 0;
   persons = persons;
@@ -54,38 +55,41 @@ export class AppComponent {
 
   constructor() {
     const { name, age } = this.person;
-    console.log('subtract', this.subtract(8, 4));
-    console.log(
-      'MAP: ',
-      this.animales.map((animal) => animal + ' - New')
-    );
-    console.log(
-      'FOREACH',
-      this.animales.forEach((animal) => animal + ' + New')
-    );
-    console.log(
-      'FIND:',
-      this.animales.find((animal) => animal === 'z')
-    );
-    console.log(
-      'FILTER:',
-      this.animales.filter((animal) => animal === 'z')
-    );
-    console.log('IndexOf: ', this.animales.indexOf('c'));
-    console.log('Destructuración: ', name, age);
-    let both = [...this.students, ...this.parents];
-    console.log('Spread Operator', both);
-    console.log('Sum Spread', this.sumSpread(1, 2, 4));
+    // console.log('subtract', this.subtract(8, 4));
+    // console.log(
+    //   'MAP: ',
+    //   this.animales.map((animal) => animal + ' - New')
+    // );
+    // console.log(
+    //   'FOREACH',
+    //   this.animales.forEach((animal) => animal + ' + New')
+    // );
+    // console.log(
+    //   'FIND:',
+    //   this.animales.find((animal) => animal === 'z')
+    // );
+    // console.log(
+    //   'FILTER:',
+    //   this.animales.filter((animal) => animal === 'z')
+    // );
+    // console.log('IndexOf: ', this.animales.indexOf('c'));
+    // console.log('Destructuración: ', name, age);
+    // let both = [...this.students, ...this.parents];
+    // console.log('Spread Operator', both);
+    // console.log('Sum Spread', this.sumSpread(1, 2, 4));
 
-    // Nullish Coalesing -> Ignorar los null's o undefined's
-    console.log('Nullish Coalesing 0 vs null:', this.var1 ?? this.var2);
-    console.log('Nullish Coalesing null vs hola:', this.var2 ?? this.var3);
-    console.log('Nullish Coalesing null vs null:', null ?? null);
+    // // Nullish Coalesing -> Ignorar los null's o undefined's
+    // console.log('Nullish Coalesing 0 vs null:', this.var1 ?? this.var2);
+    // console.log('Nullish Coalesing null vs hola:', this.var2 ?? this.var3);
+    // console.log('Nullish Coalesing null vs null:', null ?? null);
 
-    console.log('OR 0 vs null: ', this.var1 || this.var2);
-    console.log('OR null vs 0: ', this.var2 || this.var1);
+    // console.log('OR 0 vs null: ', this.var1 || this.var2);
+    // console.log('OR null vs 0: ', this.var2 || this.var1);
   }
 
+  public changeDestroy(){
+    this.destroyUserCard = !this.destroyUserCard;
+  }
   public sumSpread(...persons: number[]): number {
     // return persons[0] + persons[1]; // Es una lista
     return persons.reduce((sum, currNum) => sum + currNum, 10); // Callback - Acumulador, Valor Inicial
