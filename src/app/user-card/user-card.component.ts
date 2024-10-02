@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import {
   AfterContentInit,
+  AfterViewInit,
   Component,
   DoCheck,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
@@ -10,6 +12,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -21,14 +24,23 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './user-card.component.scss',
 })
 export class UserCardComponent
-  implements OnInit, OnDestroy, OnChanges, DoCheck, AfterContentInit
+  implements
+    OnInit,
+    OnDestroy,
+    OnChanges,
+    DoCheck,
+    AfterContentInit,
+    AfterViewInit
 {
   @Input() name: string = 'Ander';
   @Input() email: string = 'ander@ander.com';
 
   password: string = '';
-
+  showButton: boolean = false;
   @Output() sendData: EventEmitter<string> = new EventEmitter();
+
+  @ViewChild('buttonTest') buttonTest!: ElementRef
+  // @ViewChild('buttonTest', {static: true}) buttonTest!: ElementRef //  Para hacer componentes estáticos
 
   constructor() {
     console.log('USER CARD FROM CONSTRUCTOR');
@@ -58,5 +70,11 @@ export class UserCardComponent
 
   ngAfterContentInit(): void {
     console.log('NG AFTER CONTENT INIT');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('NG AFTER VIEW INIT');
+    // console.log(this.buttonTest); // Para ver los atributos de un lemento html en el DOM
+    this.buttonTest.nativeElement.textContent = "aaaaaa"
   }
 }
