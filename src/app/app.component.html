@@ -13,9 +13,12 @@
   [name]="currentPerson.name"
   [email]="currentPerson.email"
   (sendData)="receiveData($event)"
-></user-card>
-}@else{ 
-  <p>Destroying CARD!</p>
+>
+  <p>My HTML from father</p>
+  <button>My button from father</button>
+</user-card>
+}@else{
+<p>Destroying CARD!</p>
 }
 <button (click)="changeDestroy()">Destroy</button>
 

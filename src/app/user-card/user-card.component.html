@@ -4,6 +4,9 @@
   <p>EMAIL: {{ email }}</p>
 
   <p>PASSWORD = {{ password }}</p>
+  
+  <input type="text" [(ngModel)]="password"/>
+
   <button (click)="onSendData()">Send Data</button>
-  <ng-content></ng-content>
+  <!-- <ng-content></ng-content> -->
 </div>
