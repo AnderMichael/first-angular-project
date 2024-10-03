@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterContentChecked,
   AfterContentInit,
+  AfterViewChecked,
   AfterViewInit,
   Component,
   DoCheck,
@@ -30,7 +32,9 @@ export class UserCardComponent
     OnChanges,
     DoCheck,
     AfterContentInit,
-    AfterViewInit
+    AfterViewInit,
+    AfterContentChecked,
+    AfterViewChecked
 {
   @Input() name: string = 'Ander';
   @Input() email: string = 'ander@ander.com';
@@ -43,7 +47,7 @@ export class UserCardComponent
   @ViewChild('buttonShow', { static: true }) buttonShow!: ElementRef; //  Para hacer componentes estáticos
 
   constructor() {
-    console.log('USER CARD FROM CONSTRUCTOR');
+    // console.log('USER CARD FROM CONSTRUCTOR');
   }
 
   public onSendData() {
@@ -51,7 +55,7 @@ export class UserCardComponent
   }
 
   ngOnInit(): void {
-    console.log('USER CARD FROM NG-OnInit');
+    // console.log('USER CARD FROM NG-OnInit');
     // this.password = `${this.name} ${this.email} PASSWORD`;
   }
 
@@ -65,19 +69,27 @@ export class UserCardComponent
   }
 
   ngDoCheck(): void {
-    console.log('Do CHECK user card');
+    // console.log('Do CHECK user card');
   }
 
   ngAfterContentInit(): void {
-    console.log('NG AFTER CONTENT INIT');
+    // console.log('NG AFTER CONTENT INIT');
   }
 
   ngAfterViewInit(): void {
-    console.log('NG AFTER VIEW INIT');
+    // console.log('NG AFTER VIEW INIT');
     // console.log(this.buttonTest); // Para ver los atributos de un lemento html en el DOM
     this.buttonShow.nativeElement.textContent = 'buttonShow in OnInit';
     if (this.buttonTest) {
       this.buttonTest.nativeElement.textContent = 'buttonTest in OnInit';
     }
+  }
+
+  ngAfterContentChecked(): void {
+    // console.log('Do AFTER CONTENT user card');
+  }
+
+  ngAfterViewChecked(): void {
+      // console.log('AFTER VIEW CHECKED!')
   }
 }

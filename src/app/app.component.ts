@@ -6,6 +6,7 @@ import { HistoryCalculatorComponent } from './history-calculator/history-calcula
 import { CommonModule } from '@angular/common';
 import persons from '../constants/persons';
 import { PersonCardComponent } from './person-card/person-card.component';
+import { CounterComponent } from './counter/counter.component';
 interface IPerson {
   name: string;
   lastName: string;
@@ -26,6 +27,7 @@ function sumAttempt(a: number, b: number) {
     CalculatorComponent,
     HistoryCalculatorComponent,
     PersonCardComponent,
+    CounterComponent,
     CommonModule,
   ],
   templateUrl: './app.component.html',
@@ -118,7 +120,7 @@ export class AppComponent {
     const persons: number[] = [1, 2, 3, 4, 5];
     for (let i = 0; i < persons.length; i++) {
       if (persons[i] % 2 == 0) {
-        console.log('person = ', persons[i]);
+        // console.log('person = ', persons[i]);
       }
     }
   }
