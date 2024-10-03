@@ -39,8 +39,8 @@ export class UserCardComponent
   showButton: boolean = false;
   @Output() sendData: EventEmitter<string> = new EventEmitter();
 
-  @ViewChild('buttonTest') buttonTest!: ElementRef
-  // @ViewChild('buttonTest', {static: true}) buttonTest!: ElementRef //  Para hacer componentes estáticos
+  @ViewChild('buttonTest', { static: false }) buttonTest!: ElementRef;
+  @ViewChild('buttonShow', { static: true }) buttonShow!: ElementRef; //  Para hacer componentes estáticos
 
   constructor() {
     console.log('USER CARD FROM CONSTRUCTOR');
@@ -75,6 +75,9 @@ export class UserCardComponent
   ngAfterViewInit(): void {
     console.log('NG AFTER VIEW INIT');
     // console.log(this.buttonTest); // Para ver los atributos de un lemento html en el DOM
-    this.buttonTest.nativeElement.textContent = "aaaaaa"
+    this.buttonShow.nativeElement.textContent = 'buttonShow in OnInit';
+    if (this.buttonTest) {
+      this.buttonTest.nativeElement.textContent = 'buttonTest in OnInit';
+    }
   }
 }

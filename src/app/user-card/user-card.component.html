@@ -7,6 +7,9 @@
   
   <input type="text" [(ngModel)]="password"/>
 
+  <button #buttonShow (click)="showButton = !showButton">Send Data</button>
+@if(showButton){
   <button #buttonTest (click)="onSendData()">Send Data</button>
+}
   <!-- <ng-content></ng-content> -->
 </div>
