@@ -12,28 +12,21 @@ export class CounterComponent {
   counterBackground: string = 'Red';
   constructor() {
     afterRender({
-      earlyRead: () => {
-        console.log("🚀 ~ CounterComponent ~ constructor ~ earlyRead:")
-        const currentAppColor = this.counterBackground;
-        return 'From early read: ' + currentAppColor;
-      },
-      write: (props) => {
-        console.log("🚀 ~ CounterComponent ~ constructor ~ write:")
-        document.body.style.backgroundColor = this.counterBackground;
-        return 'From write: ' + this.counterBackground;
-      },
-      mixedReadWrite: (props) => {
-        console.log("🚀 ~ CounterComponent ~ constructor ~ mixedReadWrite:")
-        if (props.includes('red')) {
-          this.counterBackground = 'green';
+      write:() => {
+        console.log('INTO write')
+        document.body.style.backgroundColor = this.counterBackground
+        const currentColor = this.counterBackground
+        if(currentColor === 'red') {
+          this.counterBackground = 'blue'
         } else {
-          this.counterBackground = 'red';
+          this.counterBackground = 'red'
         }
-        return 'From mixedReadWrite: ' + this.counterBackground;
+        return 'FROM write: ' + this.counterBackground
       },
-      read: (props) => {
-        console.log("🚀 ~ CounterComponent ~ constructor ~ read:")
-        const newBackground = this.counterBackground;
+      read:(props) => {
+        console.log('INTO read ', props)
+        const newBackground = this.counterBackground
+        console.log('FROM read: ', newBackground)
       },
     });
     afterNextRender(() => {

@@ -1,4 +1,7 @@
-<div class="user-card">
+<div [ngClass]="{
+  'user-card': password === '123',
+  'user-card-black': password === 'hola' 
+}">
   <p>user-card works!</p>
   <p>INPUT: {{ name }}</p>
   <p>EMAIL: {{ email }}</p>
