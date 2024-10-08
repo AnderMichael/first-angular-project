@@ -17,11 +17,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
   selector: 'user-card',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SharedModule],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
 })
@@ -90,6 +91,6 @@ export class UserCardComponent
   }
 
   ngAfterViewChecked(): void {
-      // console.log('AFTER VIEW CHECKED!')
+    // console.log('AFTER VIEW CHECKED!')
   }
 }
