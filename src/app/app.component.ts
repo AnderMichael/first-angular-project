@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import persons from '../constants/persons';
 import { PersonCardComponent } from './person-card/person-card.component';
 import { CounterComponent } from './counter/counter.component';
+import { filter, from, map, tap } from 'rxjs';
+
 interface IPerson {
   name: string;
   lastName: string;
@@ -54,7 +56,7 @@ export class AppComponent {
     name: 'Ander2',
     lastName: 'Cayllan',
     age: 20,
-    email: 'ander2@gmail.com'
+    email: 'ander2@gmail.com',
   };
 
   students: number[] = [1, 2, 3, 4, 5, 6];
@@ -63,6 +65,8 @@ export class AppComponent {
   var1 = 0;
   var2 = null;
   var3 = 'hola';
+
+  youtube = from([1, 2, 3, 4, 5, 6]);
 
   currentPerson: any = this.person;
 
@@ -98,6 +102,10 @@ export class AppComponent {
 
     // console.log('OR 0 vs null: ', this.var1 || this.var2);
     // console.log('OR null vs 0: ', this.var2 || this.var1);
+
+    this.youtube.subscribe((res) => {
+      console.log('SUSCRIBER 1: ', res);
+    });
   }
 
   public changeDestroy() {
@@ -181,5 +189,24 @@ export class AppComponent {
 
   public changeToPerson2() {
     this.currentPerson = this.persontwo;
+  }
+
+  public addVideo() {
+    this.youtube
+      .pipe(
+        map((res) => {
+          if (res % 2 == 0) {
+            return res;
+          }
+          return null;
+        }),
+        filter((res: number | null) => res !== null),
+        tap((res: number) => {
+          console.log('Value: ', res);
+        })
+      )
+      .subscribe((res) => {
+        console.log('SUBSCRIBER 2: ', res);
+      });
   }
 }
