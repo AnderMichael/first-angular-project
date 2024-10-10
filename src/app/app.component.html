@@ -3,60 +3,67 @@
     <search (searchEvent)="onResult($event)"></search>
     <list>
       @for (item of peopleDisplay; track item) {
-      <item [person]="item" (newPerson)="onPerson($event)" (delPerson)="deletePerson($event)"></item>
+      <item
+        [person]="item"
+        (newPerson)="onPerson($event)"
+        (delPerson)="deletePerson($event)"
+      ></item>
       }
     </list>
   </div>
   <div class="cards-container">
+    <div>
+      <button (click)="changePersonal()">Personal</button>
+      <button (click)="changeGeographic()">Geographic</button>
+      <button (click)="changeMessages()">Messages</button>
+    </div>
     <card>
-      Personal
-      <div>
-        <p>Name: {{ personSelected.name }}</p>
-        <p>LastName: {{ personSelected.lastName }}</p>
-        @if( personSelected.type === 'student'){
-        <p>
-          Score:
-          {{
-            (personSelected.firstTestScore +
-              personSelected.secondTestScore +
-              personSelected.finalTestScore) /
-              3
-          }}
-        </p>
-        }@else{
-        <p>Subject: {{ personSelected.subject }}</p>
-        }
-        <p>({{ personSelected.type }})</p>
-      </div>
-    </card>
-    <card
-      >Geographic
-      <div>
-        <p>
-          Address:
-          {{
-            personSelected.address.zone +
-              " " +
-              personSelected.address.street +
-              " " +
-              personSelected.address.number
-          }}
-        </p>
-        <p>Country: {{ personSelected.country }}</p>
-        <p>Province: {{ personSelected.province }}</p>
-      </div>
-    </card>
-    <card>Messages
-      <div class="list-container">
-        <search (searchEvent)="onResult($event)"></search>
-        <list>
-          @for (item of personSelected.messages; track item) {
-            <div>
-              {{item}}
-            </div>
+      @if(cardState === 'personal'){
+        <div>
+          <p>Name: {{ personSelected.name }}</p>
+          <p>LastName: {{ personSelected.lastName }}</p>
+          @if( personSelected.type === 'student'){
+          <p>
+            Score:
+            {{
+              (personSelected.firstTestScore +
+                personSelected.secondTestScore +
+                personSelected.finalTestScore) /
+                3
+            }}
+          </p>
+          }@else{
+          <p>Subject: {{ personSelected.subject }}</p>
           }
-        </list>
-      </div>
+          <p>({{ personSelected.type }})</p>
+        </div>
+      } @else if (cardState === 'geographic'){
+        <div>
+          <p>
+            Address:
+            {{
+              personSelected.address.zone +
+                " " +
+                personSelected.address.street +
+                " " +
+                personSelected.address.number
+            }}
+          </p>
+          <p>Country: {{ personSelected.country }}</p>
+          <p>Province: {{ personSelected.province }}</p>
+        </div>
+      } @else {
+        <div class="list-container">
+          <search (searchEvent)="onChangeMessage($event)"></search>
+          <list>
+            @for (item of messagesDisplay; track item) {
+            <item>
+              {{ item }}
+            </item>
+            }
+          </list>
+        </div>
+      }
     </card>
   </div>
 </div>

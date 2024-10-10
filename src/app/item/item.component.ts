@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './item.component.scss'
 })
 export class ItemComponent {
-  @Input() person!: Person;
+  @Input() person?: Person;
   @Output() newPerson = new EventEmitter<Person>();
   @Output() delPerson = new EventEmitter<Person>();
 
