@@ -52,7 +52,7 @@ export class AppComponent {
   }
 
   public deletePerson(event:Person){
-   this.people = this.people.splice(this.people.indexOf(event),1)
+   this.people = this.people.splice(this.people.indexOf(event))
    this.peopleDisplay = this.people
   }
 }
