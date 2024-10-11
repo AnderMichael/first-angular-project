@@ -8,6 +8,7 @@ import persons from '../constants/persons';
 import { PersonCardComponent } from './person-card/person-card.component';
 import { CounterComponent } from './counter/counter.component';
 import { filter, from, map, tap } from 'rxjs';
+import { AppColorsDirective } from './app-colors.directive';
 
 interface IPerson {
   name: string;
@@ -31,6 +32,7 @@ function sumAttempt(a: number, b: number) {
     PersonCardComponent,
     CounterComponent,
     CommonModule,
+    AppColorsDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -208,5 +210,9 @@ export class AppComponent {
       .subscribe((res) => {
         console.log('SUBSCRIBER 2: ', res);
       });
+  }
+
+  public getColor(value: string){
+    console.log('Current color in bg is:', value)
   }
 }

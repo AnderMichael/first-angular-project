@@ -143,3 +143,12 @@
 <p>{{ var1 }}</p>
 
 <button (click)="addVideo()">Add Video</button>
+
+<div ngColors
+[color]="'green'"
+[defaultColor]="'red'"
+(colorClick)="getColor($event)"
+(colorDoubleClick)="getColor($event)"
+style="border: 1px solid orange;">
+  MY HTML ELEMENT
+</div>
