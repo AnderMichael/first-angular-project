@@ -9,6 +9,7 @@ import { PersonCardComponent } from './person-card/person-card.component';
 import { CounterComponent } from './counter/counter.component';
 import { filter, from, map, tap } from 'rxjs';
 import { AppColorsDirective } from './app-colors.directive';
+import { CreateHtmlDirective } from './create-html.directive';
 
 interface IPerson {
   name: string;
@@ -32,7 +33,8 @@ function sumAttempt(a: number, b: number) {
     PersonCardComponent,
     CounterComponent,
     CommonModule,
-    AppColorsDirective
+    AppColorsDirective,
+    CreateHtmlDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -45,6 +47,8 @@ export class AppComponent {
   persons = persons;
 
   history: string[] = [];
+
+  userCardCreated: boolean = false;
 
   animales: string[] = ['a', 'b', 'c', 'd', 'e', 'f'];
   person: IPerson = {
@@ -212,7 +216,7 @@ export class AppComponent {
       });
   }
 
-  public getColor(value: string){
+  public getColor(value: any){
     console.log('Current color in bg is:', value)
   }
 }

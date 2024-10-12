@@ -4,6 +4,12 @@
 <p>FOR {{ getArray() }}</p>
 <!-- <app-user-card></app-user-card> -->
 
+<button (click)="userCardCreated = !userCardCreated">change userCardCreated</button>
+{{ userCardCreated }}
+<div *ngCreateHtml="userCardCreated" (sendMessage)="getColor($event)">
+  <p>MY CUSTON STRUCTURAL DIRECTIVE</p>
+  <p> EXAMPLE </p>
+</div>
 <button (click)="currentPerson = person">Change to Person ONE</button>
 
 <button (click)="currentPerson = persontwo">Change to Person TWO</button>
