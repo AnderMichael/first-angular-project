@@ -10,6 +10,8 @@ import { CounterComponent } from './counter/counter.component';
 import { filter, from, map, tap } from 'rxjs';
 import { AppColorsDirective } from './app-colors.directive';
 import { CreateHtmlDirective } from './create-html.directive';
+import { PurePipe } from './pure.pipe';
+import { ImpurePipe } from './impure.pipe';
 
 interface IPerson {
   name: string;
@@ -34,7 +36,9 @@ function sumAttempt(a: number, b: number) {
     CounterComponent,
     CommonModule,
     AppColorsDirective,
-    CreateHtmlDirective
+    CreateHtmlDirective,
+    PurePipe,
+    ImpurePipe
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -218,5 +222,16 @@ export class AppComponent {
 
   public getColor(value: any){
     console.log('Current color in bg is:', value)
+  }
+
+  public addNumber(){
+    this.students = [...this.students, 12]
+  }
+
+  public sumPure(a:number, b:number): number {
+    return a + b;
+  }
+  public sumImpure(a:number, b:number): number {
+    return a + b + Math.random();
   }
 }
