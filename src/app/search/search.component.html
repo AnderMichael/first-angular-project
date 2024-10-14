@@ -1,7 +1,7 @@
-<input 
-    type="text" 
-    placeholder="Search..."
-    [(ngModel)]="searchTerm" 
-    (input)="onSearchChange()" 
-    class="search-input"
+<input
+  type="text"
+  placeholder="Search..."
+  [(ngModel)]="searchTerm"
+  class="search-input"
 />
+<button (click)="onSearchChange()">Search</button>
