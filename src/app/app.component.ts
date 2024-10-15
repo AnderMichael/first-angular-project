@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
@@ -12,6 +12,8 @@ import { AppColorsDirective } from './app-colors.directive';
 import { CreateHtmlDirective } from './create-html.directive';
 import { PurePipe } from './pure.pipe';
 import { ImpurePipe } from './impure.pipe';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 interface IPerson {
   name: string;
@@ -38,8 +40,11 @@ function sumAttempt(a: number, b: number) {
     AppColorsDirective,
     CreateHtmlDirective,
     PurePipe,
-    ImpurePipe
+    ImpurePipe,
+    MatCardModule,
+    MatButtonModule
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
