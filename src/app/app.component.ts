@@ -14,6 +14,7 @@ import { PurePipe } from './pure.pipe';
 import { ImpurePipe } from './impure.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { StudentModule } from './student/student.module';
 
 interface IPerson {
   name: string;
@@ -43,7 +44,8 @@ function sumAttempt(a: number, b: number) {
     PurePipe,
     ImpurePipe,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    StudentModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',

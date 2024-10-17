@@ -3,16 +3,22 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 
 export const routes: Routes = [
-    {
-        path: 'card',
-        component: UserCardComponent
-    },
-    {
-        path: 'calculator',
-        component: CalculatorComponent
-    },
-    {
-        path: 'counter-nav',
-        loadComponent: () => import('./counter/counter.component').then(n => n.CounterComponent)
-    }
+  {
+    path: 'card',
+    component: UserCardComponent,
+  },
+  {
+    path: 'calculator',
+    component: CalculatorComponent,
+  },
+  {
+    path: 'counter-nav',
+    loadComponent: () =>
+      import('./counter/counter.component').then((n) => n.CounterComponent),
+  },
+  {
+    path: 'student',
+    loadChildren: () =>
+      import('./student/student.module').then((n) => n.StudentModule),
+  },
 ];
