@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { HistoryCalculatorComponent } from './history-calculator/history-calculator.component';
@@ -30,6 +30,7 @@ function sumAttempt(a: number, b: number) {
   selector: 'app-root',
   standalone: true,
   imports: [
+    RouterLink,
     RouterOutlet,
     UserCardComponent,
     CalculatorComponent,
