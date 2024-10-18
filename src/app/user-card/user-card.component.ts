@@ -18,6 +18,8 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'user-card',
@@ -42,13 +44,22 @@ export class UserCardComponent
 
   password: string = '';
   showButton: boolean = false;
+
+  subscription: Subscription = new Subscription();
+
   @Output() sendData: EventEmitter<string> = new EventEmitter();
 
   @ViewChild('buttonTest', { static: false }) buttonTest!: ElementRef;
   @ViewChild('buttonShow', { static: true }) buttonShow!: ElementRef; //  Para hacer componentes estáticos
 
-  constructor() {
-    // console.log('USER CARD FROM CONSTRUCTOR');
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.subscription.add(
+      this.activatedRoute.params.subscribe((params) => {
+        console.log('PARAMS: ', params);
+      })
+    );
+
+    console.log('Snapshot: ', this.activatedRoute.snapshot.params);
   }
 
   public onSendData() {
@@ -61,7 +72,8 @@ export class UserCardComponent
   }
 
   ngOnDestroy(): void {
-    console.log('USER CARD FROM NG-DESTROY');
+    // console.log('USER CARD FROM NG-DESTROY');
+    this.subscription.unsubscribe()
   }
 
   ngOnChanges(changes: SimpleChanges): void {

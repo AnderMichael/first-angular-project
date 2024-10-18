@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { HistoryCalculatorComponent } from './history-calculator/history-calculator.component';
@@ -88,7 +88,7 @@ export class AppComponent {
 
   currentPerson: any = this.person;
 
-  constructor() {
+  constructor(private router: Router) {
     const { name, age } = this.person;
     // console.log('subtract', this.subtract(8, 4));
     // console.log(
@@ -241,5 +241,12 @@ export class AppComponent {
   }
   public sumImpure(a:number, b:number): number {
     return a + b + Math.random();
+  }
+
+  public goToStudentModule(){
+    this.router.navigate(['student'])
+  }
+  public goToCard(){
+    this.router.navigate(['card','10'])
   }
 }
