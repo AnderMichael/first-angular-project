@@ -1,8 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { User } from '../app.component';
-import { UserComponent } from '../user/user.component';
 import { NotificationComponent } from '../notification/notification.component';
-import { CommonModule } from '@angular/common';
+import { UserComponent } from '../user/user.component';
 
 @Component({
   selector: 'app-card',

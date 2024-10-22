@@ -1,5 +1,5 @@
-<div>
-  <div
+<div [ngClass]="{ 'opacity-50 pointer-events-none': user.status === 'inactive' }">
+    <div
     *ngFor="let notification of notifications"
     class="p-2 mb-2 rounded"
     [ngClass]="{

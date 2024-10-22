@@ -41,6 +41,7 @@ export class UserComponent {
     this.availableNetworks = this.socialNetworks.filter(network =>
       !this.user.subscriptions.includes(network.id)
     );
+    this.disabled = this.user.status !== 'active';
   }
 
   subscribe(network: SocialNetwork) {
@@ -59,5 +60,10 @@ export class UserComponent {
 
   changeSubscription(type: string) {
     this.user.subscriptionType = type;
+  }
+
+  closeAccount() {
+    this.user.status = 'inactive';
+    this.disabled = true;
   }
 }

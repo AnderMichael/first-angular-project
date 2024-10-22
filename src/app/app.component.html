@@ -4,7 +4,7 @@
     <div class="flex flex-wrap gap-2 justify-center">
       <div *ngFor="let network of socialNetworks" class="flex flex-col items-center">
         <button 
-          (click)="addNew(network.type)"
+          (click)="sendNotification(network.platform)"
           class="bg-white border border-black text-black px-4 py-2 mb-2 rounded hover:bg-gray-200"
         >
           add new {{ network.type }}
