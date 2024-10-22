@@ -1,0 +1,84 @@
+<div>
+  <h3 class="text-lg font-semibold mb-2">Name: {{ user.name }}</h3>
+  <p>Age: {{ user.age }}</p>
+  <p>Status: {{ user.status }}</p>
+  <p>
+    Subscription type:
+    <span
+      class="px-2 py-1 rounded"
+      [ngClass]="{
+        'bg-gray-400': user.subscriptionType === 'free',
+        'bg-green-500 text-white': user.subscriptionType === 'premium'
+      }"
+    >
+      {{ user.subscriptionType }}
+    </span>
+  </p>
+  <div class="flex space-x-2 mt-2">
+    <button
+      (click)="changeSubscription('free')"
+      class="px-2 py-1 border rounded"
+      [ngClass]="{
+        'bg-gray-300': user.subscriptionType === 'free',
+        'hover:bg-green-100': user.subscriptionType !== 'free'
+      }"
+    >
+      Free
+    </button>
+    <button
+      (click)="changeSubscription('premium')"
+      class="px-2 py-1 border rounded"
+      [ngClass]="{
+        'bg-gray-300': user.subscriptionType === 'premium',
+        'hover:bg-green-100': user.subscriptionType !== 'premium'
+      }"
+    >
+      Premium
+    </button>
+  </div>
+  <p>Amount available: ${{ user.amountAvailable }}</p>
+
+  <div class="mt-4">
+    <h4 class="font-semibold mb-2">Social Networks</h4>
+    <div class="flex gap-2 flex-wrap">
+      <button
+        *ngFor="let network of availableNetworks"
+        (click)="subscribe(network)"
+        class="px-2 py-1 rounded flex items-center"
+        [ngClass]="{
+          'bg-red-200': network.platform === 'youtube',
+          'bg-purple-500 text-white': network.platform === 'tiktok',
+          'bg-yellow-200': network.platform === 'instagram',
+          'bg-blue-200': network.platform === 'facebook',
+          'bg-green-200': network.platform === 'whatsapp'
+        }"
+      >
+        {{ network.platform }} <span class="ml-2">+</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h4 class="font-semibold mb-2">Subscriptions</h4>
+    <div class="flex gap-2 flex-wrap">
+      <button
+        *ngFor="let network of userSubscriptions"
+        (click)="unsubscribe(network)"
+        class="px-2 py-1 rounded flex items-center"
+        [ngClass]="{
+          'bg-red-200': network.platform === 'youtube',
+          'bg-purple-500 text-white': network.platform === 'tiktok',
+          'bg-yellow-200': network.platform === 'instagram',
+          'bg-blue-200': network.platform === 'facebook',
+          'bg-green-200': network.platform === 'whatsapp'
+        }"
+      >
+        {{ network.platform }} <span class="ml-2">-</span>
+      </button>
+    </div>
+  </div>
+
+  <button class="mt-4 bg-red-500 text-white px-4 py-2 rounded">
+    Close account
+  </button>
+</div>
