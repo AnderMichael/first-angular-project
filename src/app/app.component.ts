@@ -46,13 +46,16 @@ export class AppComponent {
         filter((user) => user.status === 'active'),
         filter((user) => user.subscriptions.includes(platformId)),
         map((user) => {
-          user.notifications.push(message);
+          if (!isPremium) {
+            user.notifications.push(message);
+          }
           if (
             isPremium &&
             user.amountAvailable >= 5 &&
             user.subscriptionType === 'premium'
           ) {
             user.amountAvailable -= 5;
+            user.notifications.push(message);
           }
           return user;
         }),
