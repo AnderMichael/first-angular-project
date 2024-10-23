@@ -15,7 +15,7 @@ import { ImpurePipe } from './impure.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { StudentModule } from './student/student.module';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 interface IPerson {
   name: string;
@@ -48,12 +48,16 @@ function sumAttempt(a: number, b: number) {
     MatButtonModule,
     StudentModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+
+  scoreControl = new FormControl<string>('', (Validators.required))
+
   title = 'angular-tour-of-heroes';
   destroyUserCard: boolean = true;
   sumAttempt = sumAttempt;
@@ -263,5 +267,9 @@ export class AppComponent {
 
   public onSubmit(data: any) {
     console.log('Template Driven Form:', data);
+  }
+
+  public printScore(){
+    console.log(this.scoreControl.value)
   }
 }

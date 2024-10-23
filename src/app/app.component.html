@@ -140,4 +140,9 @@
     <input type="text" ngModel name="phone" />
     <button type="submit">Send Data</button>
   </form>
+  <h1> Reactive Form </h1>
+  <form >
+    <input type="text" [formControl]="scoreControl" />
+    <button (click)="printScore()">Send Data</button>
+  </form>
 </mat-card>
