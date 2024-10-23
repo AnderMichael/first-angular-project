@@ -88,7 +88,12 @@
 >
   Calculator From HTML
 </button>
-<button type="button" class="btn btn-dark" [routerLink]="'/calculator'" (click)="onCalculator()">
+<button
+  type="button"
+  class="btn btn-dark"
+  [routerLink]="'/calculator'"
+  (click)="onCalculator()"
+>
   Calculator From TS
 </button>
 <button type="button" class="btn btn-warning" [routerLink]="'/counter-nav'">
@@ -114,3 +119,25 @@
 <div style="border: 4cqmax solid greenyellow; height: 500px; width: 500px">
   <router-outlet> </router-outlet>
 </div>
+
+<div>
+  <p>Name</p>
+  <input type="text" [(ngModel)]="name" />
+  <p>Last Name</p>
+  <input type="text" [(ngModel)]="lastName" />
+</div>
+<mat-card class="example-card" appearance="outlined">
+  <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
+    <p>Name</p>
+    <input type="text" ngModel name="name" />
+    <p>Age</p>
+    <input type="text" ngModel name="age" />
+    <p>Last Name</p>
+    <input type="text" ngModel name="lastName" />
+    <p>City</p>
+    <input type="text" ngModel name="city" />
+    <p>Phone</p>
+    <input type="text" ngModel name="phone" />
+    <button type="submit">Send Data</button>
+  </form>
+</mat-card>

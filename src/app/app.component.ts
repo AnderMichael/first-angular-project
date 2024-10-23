@@ -15,6 +15,7 @@ import { ImpurePipe } from './impure.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { StudentModule } from './student/student.module';
+import { FormsModule } from '@angular/forms';
 
 interface IPerson {
   name: string;
@@ -45,7 +46,8 @@ function sumAttempt(a: number, b: number) {
     ImpurePipe,
     MatCardModule,
     MatButtonModule,
-    StudentModule
+    StudentModule,
+    FormsModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
@@ -87,6 +89,9 @@ export class AppComponent {
   youtube = from([1, 2, 3, 4, 5, 6]);
 
   currentPerson: any = this.person;
+
+  name: string = '';
+  lastName: string = '';
 
   constructor(private router: Router) {
     const { name, age } = this.person;
@@ -228,29 +233,35 @@ export class AppComponent {
       });
   }
 
-  public getColor(value: any){
-    console.log('Current color in bg is:', value)
+  public getColor(value: any) {
+    console.log('Current color in bg is:', value);
   }
 
-  public addNumber(){
-    this.students = [...this.students, 12]
+  public addNumber() {
+    this.students = [...this.students, 12];
   }
 
-  public sumPure(a:number, b:number): number {
+  public sumPure(a: number, b: number): number {
     return a + b;
   }
-  public sumImpure(a:number, b:number): number {
+  public sumImpure(a: number, b: number): number {
     return a + b + Math.random();
   }
 
-  public goToStudentModule(){
-    this.router.navigate(['student'])
+  public goToStudentModule() {
+    this.router.navigate(['student']);
   }
-  public goToCard(){
-    this.router.navigate(['card','10'])
+  public goToCard() {
+    this.router.navigate(['card', '10']);
   }
 
-  public onCalculator(){
-    this.router.navigate(['calculator'], {queryParams: {name: 'John', age: 20}})
+  public onCalculator() {
+    this.router.navigate(['calculator'], {
+      queryParams: { name: 'John', age: 20 },
+    });
+  }
+
+  public onSubmit(data: any) {
+    console.log('Template Driven Form:', data);
   }
 }
