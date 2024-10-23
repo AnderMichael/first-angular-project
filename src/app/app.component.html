@@ -41,14 +41,25 @@
 <h1 class="text-sm font-bold underline text-red-800">Hello world TAILWIND</h1>
 
 <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-  </div>
-  <div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-  <button type="button" class="btn btn-primary">Primary</button>
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input
+    type="email"
+    class="form-control"
+    id="exampleFormControlInput1"
+    placeholder="name@example.com"
+  />
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label"
+    >Example textarea</label
+  >
+  <textarea
+    class="form-control"
+    id="exampleFormControlTextarea1"
+    rows="3"
+  ></textarea>
+</div>
+<button type="button" class="btn btn-primary">Primary</button>
 <button type="button" class="btn btn-secondary">Secondary</button>
 <button type="button" class="btn btn-success">Success</button>
 <button type="button" class="btn btn-danger">Danger</button>
@@ -60,17 +71,46 @@
 
 <p>Navigation</p>
 
-<button type="button" class="btn btn-light" [routerLink]="['card', 8]">User Card param 8</button>
-<button type="button" class="btn btn-light" (click)="goToCard()">User Card param 1</button><button type="button" class="btn btn-dark" [routerLink]="'/calculator'">Calculator</button>
-<button type="button" class="btn btn-warning" [routerLink]="'/counter-nav'">Counter</button>
-<button type="button" class="btn btn-success" [routerLink]="'/student'">Student Module</button>
-<button type="button" class="btn btn-success" [routerLink]="'/student/classmate'">Student Module - Classmate</button>
-<button type="button" class="btn btn-danger" [routerLink]="'/student/average'">Student Score (Default) Average</button>
-<button type="button" class="btn btn-primary" (click)="goToStudentModule()">Routing From TS - StudentModule</button>
+<button type="button" class="btn btn-light" [routerLink]="['card', 8]">
+  User Card param 8
+</button>
+<button type="button" class="btn btn-light" (click)="goToCard()">
+  User Card param 1
+</button>
+<button type="button" class="btn btn-dark" [routerLink]="'/calculator'">
+  Calculator
+</button>
+<button
+  type="button"
+  class="btn btn-dark"
+  [routerLink]="'/calculator'"
+  [queryParams]="{ name: 'Ander', lastName: 'Cayllan' }"
+>
+  Calculator From HTML
+</button>
+<button type="button" class="btn btn-dark" [routerLink]="'/calculator'" (click)="onCalculator()">
+  Calculator From TS
+</button>
+<button type="button" class="btn btn-warning" [routerLink]="'/counter-nav'">
+  Counter
+</button>
+<button type="button" class="btn btn-success" [routerLink]="'/student'">
+  Student Module
+</button>
+<button
+  type="button"
+  class="btn btn-success"
+  [routerLink]="'/student/classmate'"
+>
+  Student Module - Classmate
+</button>
+<button type="button" class="btn btn-danger" [routerLink]="'/student/average'">
+  Student Score (Default) Average
+</button>
+<button type="button" class="btn btn-primary" (click)="goToStudentModule()">
+  Routing From TS - StudentModule
+</button>
 
-
-<div style="border: 4cqmax solid greenyellow;height: 500px; width: 500px;">
-  <router-outlet>
-  </router-outlet>
+<div style="border: 4cqmax solid greenyellow; height: 500px; width: 500px">
+  <router-outlet> </router-outlet>
 </div>
-
