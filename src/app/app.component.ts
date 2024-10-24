@@ -318,4 +318,8 @@ export class AppComponent {
   public onSendData(){
     console.log(this.studentForm)
   }
+
+  public print(){
+    console.log('FORM NAME: ', this.studentForm.get('name'))
+  }
 }

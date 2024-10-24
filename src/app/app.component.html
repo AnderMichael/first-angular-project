@@ -128,8 +128,13 @@
 </div>
 <mat-card class="example-card" appearance="outlined">
   <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
-    <p>Name</p>
-    <input type="text" ngModel name="name" />
+    <input type="text" #nameT="ngModel" name="name" ngModel required />
+    <div *ngIf="nameT.invalid && nameT.touched" style="color: red">
+      THERE IS AN ERROR
+    </div>
+    <p>{{ nameT.invalid | json }}</p>
+    <p>{{ nameT.touched | json }}</p>
+
     <p>Age</p>
     <input type="text" ngModel name="age" />
     <p>Last Name</p>
@@ -140,15 +145,23 @@
     <input type="text" ngModel name="phone" />
     <button type="submit">Send Data</button>
   </form>
-  <h3> Reactive Form </h3>
-  <form >
+  <h3>Reactive Form</h3>
+  <form>
     <input type="text" [formControl]="scoreControl" />
     <button (click)="printScore()">Send Data</button>
   </form>
-  <h3> Form Group </h3>
+  <h3>Form Group</h3>
   <form [formGroup]="studentForm">
     <p>Name</p>
     <input type="text" [formControlName]="'name'" />
+    <div
+      *ngIf="
+        studentForm.get('name')?.invalid && studentForm.get('name')?.touched
+      "
+    >
+      name is required
+    </div>
+    <button (click)="print()">print name control</button>
     <p>School</p>
     <input type="text" [formControlName]="'school'" />
     <p>Score</p>
@@ -157,6 +170,12 @@
     <input type="text" [formControlName]="'professor'" />
     <p>University</p>
     <input type="text" [formControlName]="'university'" />
-    <button type="submit" [disabled]="studentForm.invalid" (click)="onSendData()">Send Data</button>
+    <button
+      type="submit"
+      [disabled]="studentForm.invalid"
+      (click)="onSendData()"
+    >
+      Send Data
+    </button>
   </form>
 </mat-card>
