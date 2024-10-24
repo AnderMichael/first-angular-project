@@ -21,6 +21,8 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 
@@ -33,6 +35,14 @@ interface IPerson {
 
 function sumAttempt(a: number, b: number) {
   return a + b;
+}
+
+interface IForm {
+  name: string;
+  score?: string;
+  school?: string;
+  professor?: string;
+  university?: string;
 }
 
 @Component({
@@ -104,9 +114,10 @@ export class AppComponent {
   lastName: string = '';
 
   studentForm!: FormGroup;
+  student2Form!: UntypedFormGroup
   formBuilder: FormBuilder = new FormBuilder();
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private unTypedFormBuilder : UntypedFormBuilder) {
     const { name, age } = this.person;
     // console.log('subtract', this.subtract(8, 4));
     // console.log(
@@ -142,7 +153,18 @@ export class AppComponent {
     this.youtube.subscribe((res) => {
       console.log('SUSCRIBER 1: ', res);
     });
-    this.studentForm = this.formBuilder.group({
+
+    // Formularios Pasables
+    this.studentForm = this.formBuilder.group<IForm>({
+      name: '',
+      score: '',
+      school: '',
+      professor: '',
+      university: '',
+    });
+
+    // Formularios LoLocos
+    this.student2Form = this.unTypedFormBuilder.group({
       name: ['', Validators.required],
       score: [''],
       school: [''],
