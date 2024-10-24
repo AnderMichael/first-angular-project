@@ -15,7 +15,14 @@ import { ImpurePipe } from './impure.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { StudentModule } from './student/student.module';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 interface IPerson {
   name: string;
@@ -48,15 +55,14 @@ function sumAttempt(a: number, b: number) {
     MatButtonModule,
     StudentModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-
-  scoreControl = new FormControl<string>('', (Validators.required))
+  scoreControl = new FormControl<string>('', Validators.required);
 
   title = 'angular-tour-of-heroes';
   destroyUserCard: boolean = true;
@@ -97,6 +103,9 @@ export class AppComponent {
   name: string = '';
   lastName: string = '';
 
+  studentForm!: FormGroup;
+  formBuilder: FormBuilder = new FormBuilder();
+
   constructor(private router: Router) {
     const { name, age } = this.person;
     // console.log('subtract', this.subtract(8, 4));
@@ -132,6 +141,17 @@ export class AppComponent {
 
     this.youtube.subscribe((res) => {
       console.log('SUSCRIBER 1: ', res);
+    });
+    this.studentForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      score: [''],
+      school: [''],
+      professor: [''],
+      university: [''],
+    });
+
+    this.studentForm.valueChanges.subscribe((res) => {
+      console.log('Form group observable:', res);
     });
   }
 
@@ -269,7 +289,11 @@ export class AppComponent {
     console.log('Template Driven Form:', data);
   }
 
-  public printScore(){
-    console.log(this.scoreControl.value)
+  public printScore() {
+    console.log(this.scoreControl.value);
+  }
+
+  public onSendData(){
+    console.log(this.studentForm)
   }
 }

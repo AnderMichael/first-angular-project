@@ -140,9 +140,23 @@
     <input type="text" ngModel name="phone" />
     <button type="submit">Send Data</button>
   </form>
-  <h1> Reactive Form </h1>
+  <h3> Reactive Form </h3>
   <form >
     <input type="text" [formControl]="scoreControl" />
     <button (click)="printScore()">Send Data</button>
+  </form>
+  <h3> Form Group </h3>
+  <form [formGroup]="studentForm">
+    <p>Name</p>
+    <input type="text" [formControlName]="'name'" />
+    <p>School</p>
+    <input type="text" [formControlName]="'school'" />
+    <p>Score</p>
+    <input type="text" [formControlName]="'score'" />
+    <p>Professor</p>
+    <input type="text" [formControlName]="'professor'" />
+    <p>University</p>
+    <input type="text" [formControlName]="'university'" />
+    <button type="submit" [disabled]="studentForm.invalid" (click)="onSendData()">Send Data</button>
   </form>
 </mat-card>
