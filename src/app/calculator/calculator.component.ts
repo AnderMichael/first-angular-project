@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'calculator',
@@ -10,7 +11,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './calculator.component.scss',
 })
 export class CalculatorComponent implements OnInit {
-  constructor(private _activatedRoute: ActivatedRoute) {}
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _authService: AuthService
+  ) {}
   ngOnInit(): void {
     this._activatedRoute.queryParams.subscribe((params) => {
       console.log('🚀 ~ CalculatorComponent ~ ngOnInit ~ params:', params);
@@ -41,5 +45,9 @@ export class CalculatorComponent implements OnInit {
     this.numberBox1 = 0;
     this.numberBox2 = 0;
     this.reset.emit();
+  }
+
+  public onLogin() {
+    this._authService.login();
   }
 }
