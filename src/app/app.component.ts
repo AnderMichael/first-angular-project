@@ -25,6 +25,7 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+import { StudentService } from './services/student.service';
 
 interface IPerson {
   name: string;
@@ -114,10 +115,14 @@ export class AppComponent {
   lastName: string = '';
 
   studentForm!: FormGroup;
-  student2Form!: UntypedFormGroup
+  student2Form!: UntypedFormGroup;
   formBuilder: FormBuilder = new FormBuilder();
 
-  constructor(private router: Router, private unTypedFormBuilder : UntypedFormBuilder) {
+  constructor(
+    private router: Router,
+    private unTypedFormBuilder: UntypedFormBuilder,
+    private student_service: StudentService
+  ) {
     const { name, age } = this.person;
     // console.log('subtract', this.subtract(8, 4));
     // console.log(
@@ -152,6 +157,10 @@ export class AppComponent {
 
     this.youtube.subscribe((res) => {
       console.log('SUSCRIBER 1: ', res);
+    });
+
+    this.student_service.getStudents().subscribe((res) => {
+      console.log('Student Service: ', res);
     });
 
     // Formularios Pasables
@@ -315,11 +324,11 @@ export class AppComponent {
     console.log(this.scoreControl.value);
   }
 
-  public onSendData(){
-    console.log(this.studentForm)
+  public onSendData() {
+    console.log(this.studentForm);
   }
 
-  public print(){
-    console.log('FORM NAME: ', this.studentForm.get('name'))
+  public print() {
+    console.log('FORM NAME: ', this.studentForm.get('name'));
   }
 }
