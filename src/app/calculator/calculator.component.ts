@@ -1,19 +1,20 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'calculator',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss',
 })
 export class CalculatorComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _router: Router
   ) {}
   ngOnInit(): void {
     this._activatedRoute.queryParams.subscribe((params) => {
@@ -49,5 +50,6 @@ export class CalculatorComponent implements OnInit {
 
   public onLogin() {
     this._authService.login();
+    this._router.navigate(['/student'])
   }
 }
