@@ -26,6 +26,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { StudentService } from './services/student.service';
+import { AuthService } from './auth.service';
 
 interface IPerson {
   name: string;
@@ -121,7 +122,8 @@ export class AppComponent {
   constructor(
     private router: Router,
     private unTypedFormBuilder: UntypedFormBuilder,
-    private student_service: StudentService
+    private student_service: StudentService,
+    private _authService: AuthService
   ) {
     const { name, age } = this.person;
     // console.log('subtract', this.subtract(8, 4));
@@ -330,5 +332,10 @@ export class AppComponent {
 
   public print() {
     console.log('FORM NAME: ', this.studentForm.get('name'));
+  }
+
+  onLogin(){
+    this._authService.login()
+    this.router.navigate(['student'])
   }
 }
